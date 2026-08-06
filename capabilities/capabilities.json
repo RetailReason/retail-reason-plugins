@@ -1,0 +1,74 @@
+{
+  "supplier_academy": {
+    "topics": [
+      "Becoming a Walmart supplier: onboarding, agreements, and first-PO readiness",
+      "Supply-chain compliance: OTIF, chargebacks, ASN accuracy, and disputes",
+      "Getting paid: invoices, deductions, and dispute channels",
+      "Replenishment, forecasting, transportation, and routing",
+      "Merchandising and growth: modulars, line reviews, features, and retail media",
+      "Supplier systems, fiscal calendar, and Walmart terminology"
+    ],
+    "exampleQuestions": [
+      "We got hit with OTIF chargebacks this quarter — how do we work out what happened and dispute the ones that aren't ours?",
+      "What does it take to go from approved supplier to first purchase order?",
+      "How do I read a deduction on my remittance and decide whether it's worth disputing?"
+    ]
+  },
+  "scintilla_basic": {
+    "topics": [
+      "Reporting on your own items: sales and inventory views",
+      "Building, scheduling, and sharing reports",
+      "Metric definitions and denominators — what a number actually measures",
+      "Instock and out-of-stock diagnosis from your own data"
+    ],
+    "exampleQuestions": [
+      "Which report should I build to see weekly store-level sales and instock for my items?",
+      "Why doesn't my dollars-per-store-week match the figure my buyer quoted?",
+      "How do I schedule a weekly report so it lands with my team automatically?"
+    ]
+  },
+  "scintilla_charter": {
+    "topics": [
+      "Shopper behavior: baskets, trips, loyalty, and switching",
+      "Customer perception research and surveys",
+      "Digital shelf and online performance landscapes",
+      "Insights activation and audience workflows",
+      "Data out: integrations, feeds, and APIs into your own stack",
+      "Cross-module playbooks: connecting sales, shopper, and perception views"
+    ],
+    "exampleQuestions": [
+      "How do I tell whether my promotion drove new buyers or just subsidized existing ones?",
+      "What's the right way to pull our Walmart data into our own BI stack?",
+      "Who is switching away from my brand, and where are they going?"
+    ]
+  },
+  "marketplace": {
+    "topics": [
+      "Seller onboarding and Seller Center orientation",
+      "Listings, listing quality, and catalog health",
+      "Pricing and Buy Box competitiveness",
+      "Fulfillment: WFS versus seller-fulfilled, and shipping standards",
+      "Payments, fees, and settlement",
+      "Performance standards, account health, growth, and advertising"
+    ],
+    "exampleQuestions": [
+      "My listing isn't winning the Buy Box even though I'm cheaper — what should I check?",
+      "Should this catalog go into WFS or stay seller-fulfilled?",
+      "How do referral fees and settlement timing actually work?"
+    ]
+  },
+  "supplier_one": {
+    "topics": [
+      "Portal navigation: where each supplier workflow lives",
+      "Items and catalog maintenance in the portal",
+      "Orders and shipping workflows",
+      "Payments, invoices, and deduction research",
+      "Performance views and what drives them"
+    ],
+    "exampleQuestions": [
+      "Where in Supplier One do I check the status of a disputed deduction?",
+      "How do I update item content and images through the portal?",
+      "What's the step-by-step to research a shortage claim?"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+# Walmart Advisory Service — Codex CLI MCP server config.
+# Paste into ~/.codex/config.toml (global) or .codex/config.toml (trusted project).
+#
+# Set your seat key in the environment BEFORE launching Codex:
+#   export WADV_LICENSE_KEY="wadv_live_..."
+#
+# Leave the localhost url for local development; swap in the production URL
+# when it is provided with your subscription.
+
+[mcp_servers.walmart_advisor]
+url = "http://localhost:8787/mcp"
+bearer_token_env_var = "WADV_LICENSE_KEY"

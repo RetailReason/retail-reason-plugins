@@ -1,0 +1,15 @@
+{
+  "name": "walmart-advisory",
+  "owner": {
+    "name": "Startup Success Lab",
+    "email": "matt@startupsuccesslab.com"
+  },
+  "description": "Walmart Advisory Service — a licensed, connected advisory service for Walmart 1P suppliers, 3P Marketplace sellers, and the advisors who serve them. This marketplace installs the thin client plugin; expertise is delivered by the hosted service (seat key required).",
+  "plugins": [
+    {
+      "name": "walmart-advisor",
+      "source": "./plugins/walmart-advisor",
+      "description": "Connected Walmart advisory client: expert answers on 1P supplier operations (onboarding, compliance, chargebacks, deductions, merchandising), Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal — plus a pitfall check for any Walmart deliverable, a glossary lookup, and a fiscal-calendar converter. Requires a Walmart Advisory Service seat key."
+    }
+  ]
+}

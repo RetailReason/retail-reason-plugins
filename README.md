@@ -1,0 +1,66 @@
+# Walmart Advisory Service — client distribution
+
+The Walmart Advisory Service is a hosted expert service for people who operate on Walmart's
+supplier and seller platforms: 1P suppliers, 3P Marketplace sellers, and the consultants and
+agencies who serve them. It answers operational questions with exact specifics — metric
+definitions, screen paths, thresholds, dispute channels — pitfall-checks your draft
+deliverables the way a seasoned Walmart advisor would, and keeps its knowledge continuously
+verified (every answer carries an `as_of` verification date).
+
+This repository contains only the **thin clients**: a Claude Code plugin, a Codex CLI
+config, and the public capability map. All expertise is delivered by the hosted service
+over an authenticated MCP connection; a licensed seat key (`wadv_live_...`) is required.
+Keys are per-seat — don't share them.
+
+## Install: Claude Code
+
+1. Add the marketplace (use this repo's URL, or a local path while developing):
+
+   ```
+   /plugin marketplace add <repo-url-or-path>
+   ```
+
+2. Install the plugin:
+
+   ```
+   /plugin install walmart-advisor@walmart-advisory
+   ```
+
+3. When prompted, enter your **license key** (`wadv_live_...`). Leave **Server URL** at its
+   default for local development; set it to the production URL when it is provided with
+   your subscription.
+
+4. Restart Claude Code and ask any Walmart supplier/seller question to confirm it works.
+
+**If the key stops working after a restart:** the key is stored in your OS keychain and can
+occasionally drop. Re-enter it in the plugin's settings (`/plugin` → walmart-advisor →
+configure). If it keeps happening, use the env-var fallback: set
+`export WADV_LICENSE_KEY="wadv_live_..."` in your shell profile and edit the installed
+plugin's `.mcp.json` to read `"Authorization": "Bearer ${WADV_LICENSE_KEY}"` — Claude Code
+expands environment variables in MCP headers.
+
+## Install: Codex CLI
+
+See [`codex/README.md`](./codex/README.md): export `WADV_LICENSE_KEY`, paste
+[`codex/config-snippet.toml`](./codex/config-snippet.toml) into `~/.codex/config.toml`, and
+optionally install the thin skill plugin under `codex/plugins/`.
+
+## Other platforms
+
+claude.ai / ChatGPT connectors are coming in a later phase.
+
+## Support
+
+Support contact: _placeholder — support email/portal to be announced._ Include your org
+name (never your license key) when writing in.
+
+## Contributing / maintainers
+
+Before committing, run the leak check — it must pass:
+
+```bash
+./scripts/leak-check.sh
+```
+
+It scans every file in this repo for strings that must never ship publicly. Wire it as a
+pre-commit hook: `ln -s ../../scripts/leak-check.sh .git/hooks/pre-commit`
