@@ -63,4 +63,23 @@ Before committing, run the leak check — it must pass:
 ```
 
 It scans every file in this repo for strings that must never ship publicly. Wire it as a
-pre-commit hook: `ln -s ../../scripts/leak-check.sh .git/hooks/pre-commit`
+pre-commit hook (the script resolves its real location through the symlink, so any
+non-zero exit — leak found *or* the check failing to run — blocks the commit):
+
+```bash
+ln -s ../../scripts/leak-check.sh .git/hooks/pre-commit
+```
+
+Two modes:
+
+- **Default** — if the private corpus repo is not on the machine, the internal-name
+  denylist is skipped with a note and the static checks still run. This is the contributor
+  mode: most machines legitimately lack the corpus repo.
+- **`--strict`** — fails (exit 2) unless the denylist was actually built from the corpus
+  repo. Use this wherever the corpus checkout exists (Matt's machine, release checks):
+  `WADV_CORPUS_REPO=path/to/corpus-repo ./scripts/leak-check.sh --strict`. A sibling
+  directory with the expected layout is auto-detected when the env var is unset.
+
+The guard matches literal strings only. It cannot catch structural leaks — prose whose
+shape mirrors the private skill taxonomy one-to-one. Trigger language in `SKILL.md` and
+tool descriptions must stay broad and outcome-shaped; that part is human review.
