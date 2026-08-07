@@ -49,6 +49,25 @@ optionally install the thin skill plugin under `codex/plugins/`.
 
 claude.ai / ChatGPT connectors are coming in a later phase.
 
+## The capability map (`capabilities/capabilities.json`)
+
+This file is the curated, public description of what the service covers. **No client reads it.**
+It is ingested by the hosted service, and the `get_capabilities` tool renders it per seat — so
+what a user sees differs from the file in two ways:
+
+- **Filtered to the seat.** Only the areas that seat is licensed for are rendered; a buyer is
+  never shown an area they cannot use. A Charter data seat implicitly covers the Basic scope.
+- **Merged and retitled.** The file is keyed by entitlement (`supplier_academy`,
+  `scintilla_basic`, `scintilla_charter`, `marketplace`, `supplier_one`); the answer is grouped
+  under four presented areas — **Walmart supplier fundamentals**, **Scintilla / Walmart data**,
+  **Walmart Marketplace**, **Supplier One**. The two Scintilla entitlements merge into the one
+  Scintilla area (plan tier is an entitlement detail, not a browsing surface), with their topics
+  and example questions concatenated and de-duplicated.
+
+Editing this file changes what every seat sees, but only once the service re-ingests the corpus —
+reinstalling the plugin changes nothing. Keep entries outcome-shaped: the leak-guard below cannot
+catch a topic list that mirrors internal structure.
+
 ## Support
 
 Support contact: _placeholder — support email/portal to be announced._ Include your org

@@ -32,6 +32,13 @@ was set in the environment Codex launched from.
    draft (or a faithful summary of it) and fold the returned corrections in before delivering.
    Do this even when the draft looks right; the tool exists to catch what looks right but is
    not (denominator choices, tier limitations, program rule changes, common misreadings).
+   **If the check comes back with no corrections** — a licensing or allowance message, a
+   refusal, or a service error — the deliverable is *unchecked*, and you must never present it
+   as checked. First, if the message asks for something you can supply (a shorter excerpt, a
+   summary, a missing detail), do that once. If it still returns no corrections, or the
+   message is terminal, hand the deliverable over with a visible caveat at the top saying the
+   expert pitfall check did not run and why, quoting the service's message. Never silently
+   deliver unchecked work as checked, and never silently withhold finished work.
 5. **Context is qualitative.** Use the `context` parameter to describe the client situation —
    category, program, what has been tried. NEVER paste raw confidential figures (sales
    numbers, invoice amounts, account numbers, personal data). Describe them instead, e.g.
@@ -50,7 +57,19 @@ was set in the environment Codex launched from.
    `convert_walmart_calendar` for WM week / fiscal calendar ↔ date conversion (instant and
    unmetered). For how a concept works in practice, prefer an `ask_*` tool over the glossary.
 
-## When a call is refused or throttled
+## When a call is refused, throttled, or errors
 
-Relay the service's message to the user plainly and stop. Do not try to rephrase around a
-licensing, allowance, or content limit — those messages are accurate and intentional.
+- **Licensing, allowance, and content limits are final.** Relay the service's message to the
+  user plainly and do not rephrase the request to get around it — those messages are accurate
+  and intentional.
+- **An input-size limit or a missing parameter is not.** When the message names a length limit
+  or asks for input it did not get, comply once: resend the relevant excerpt or a faithful
+  summary, or ask the user for what is missing. Never resubmit the same content unchanged.
+  The published limits are 24,000 characters for a pitfall-check draft, 4,000 for a question,
+  and 8,000 for `context` — trim to them before calling rather than discovering them.
+- **A service error is not yours to retry.** The service has already retried and failed over
+  across providers before it says that, and the attempt is already charged to the seat, so an
+  immediate re-call just spends the allowance again. Surface the message and let the user
+  decide whether to ask again.
+- **Stopping applies to the call, not to work already in progress.** If a draft was waiting on
+  the mandatory pitfall check, rule 4 governs what happens to that draft.
