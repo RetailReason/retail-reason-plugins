@@ -16,7 +16,7 @@ the model when and how to use the service.
 
    ```toml
    [mcp_servers.walmart_advisor]
-   url = "https://api.retailreason.com/mcp"
+   url = "https://mcp.retailreason.com/mcp"
    bearer_token_env_var = "WADV_LICENSE_KEY"
    ```
 

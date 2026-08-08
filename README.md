@@ -108,7 +108,11 @@ tool descriptions must stay broad and outcome-shaped; that part is human review.
 
 The plugin ships pointing at the production service:
 
-    https://api.retailreason.com/mcp
+    https://mcp.retailreason.com/mcp
+
+The MCP endpoint has its own host, separate from `api.retailreason.com` (reserved for the
+account/billing REST API): the two have different authentication, rate limits and abuse
+profiles, and separating them keeps those policies independent.
 
 To run against a local backend instead, set the plugin's **Server URL** config value to
 `http://localhost:8787/mcp` (Claude Code prompts for it at install; Codex reads it from

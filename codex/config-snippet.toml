@@ -8,5 +8,5 @@
 # when it is provided with your subscription.
 
 [mcp_servers.walmart_advisor]
-url = "https://api.retailreason.com/mcp"
+url = "https://mcp.retailreason.com/mcp"
 bearer_token_env_var = "WADV_LICENSE_KEY"
