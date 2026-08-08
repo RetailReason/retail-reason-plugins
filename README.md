@@ -102,3 +102,14 @@ Two modes:
 The guard matches literal strings only. It cannot catch structural leaks — prose whose
 shape mirrors the private skill taxonomy one-to-one. Trigger language in `SKILL.md` and
 tool descriptions must stay broad and outcome-shaped; that part is human review.
+
+
+## Endpoint
+
+The plugin ships pointing at the production service:
+
+    https://api.retailreason.com/mcp
+
+To run against a local backend instead, set the plugin's **Server URL** config value to
+`http://localhost:8787/mcp` (Claude Code prompts for it at install; Codex reads it from
+`config-snippet.toml`). The license key is unchanged either way.

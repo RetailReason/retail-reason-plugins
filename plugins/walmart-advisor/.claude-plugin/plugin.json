@@ -28,9 +28,9 @@
     "server_url": {
       "type": "string",
       "title": "Server URL",
-      "description": "Service endpoint (leave default for local dev; set to the production URL when provided)",
+      "description": "Service endpoint. Leave the default unless you are running the service locally, in which case set http://localhost:8787/mcp",
       "required": false,
-      "default": "http://localhost:8787/mcp"
+      "default": "https://api.retailreason.com/mcp"
     }
   }
 }
