@@ -1,6 +1,6 @@
-# Walmart Advisory Service — client distribution
+# Retail Reason — client distribution
 
-The Walmart Advisory Service is a hosted expert service for people who operate on Walmart's
+Retail Reason is a hosted expert service for people who operate on Walmart's
 supplier and seller platforms: 1P suppliers, 3P Marketplace sellers, and the consultants and
 agencies who serve them. It answers operational questions with exact specifics — metric
 definitions, screen paths, thresholds, dispute channels — pitfall-checks your draft
@@ -12,12 +12,16 @@ config, and the public capability map. All expertise is delivered by the hosted 
 over an authenticated MCP connection; a licensed seat key (`wadv_live_...`) is required.
 Keys are per-seat — don't share them.
 
+Retail Reason is an independent product. It is not affiliated with, endorsed by, or a
+product of Walmart Inc.; "Walmart" and the platform names below are used only to describe
+who the service is for and what it covers.
+
 ## Install: Claude Code
 
-1. Add the marketplace (use this repo's URL, or a local path while developing):
+1. Add the marketplace:
 
    ```
-   /plugin marketplace add <repo-url-or-path>
+   /plugin marketplace add https://github.com/RetailReason/retail-reason-plugins
    ```
 
 2. Install the plugin:
@@ -26,9 +30,12 @@ Keys are per-seat — don't share them.
    /plugin install walmart-advisor@walmart-advisory
    ```
 
+   (`walmart-advisor` and `walmart-advisory` are the plugin and marketplace identifiers.
+   The product is Retail Reason; those ids are frozen so existing installs keep working.)
+
 3. When prompted, enter your **license key** (`wadv_live_...`). Leave **Server URL** at its
-   default for local development; set it to the production URL when it is provided with
-   your subscription.
+   default — it already points at the live Retail Reason service. Change it only if you are
+   running the service yourself, to `http://localhost:8787/mcp`.
 
 4. Restart Claude Code and ask any Walmart supplier/seller question to confirm it works.
 
@@ -70,16 +77,21 @@ catch a topic list that mirrors internal structure.
 
 ## Support
 
-Support contact: _placeholder — support email/portal to be announced._ Include your org
-name (never your license key) when writing in.
+Support is by email: **matt@startupsuccesslab.com** — a monitored mailbox, answered by the
+operator directly. (Startup Success Lab is the entity behind Retail Reason; a dedicated
+support address moves here when it exists.) Include your org name and roughly when the
+problem happened; never include your license key.
 
 ## Contributing / maintainers
 
-Before committing, run the leak check — it must pass:
+Before committing, run both guards — they must pass:
 
 ```bash
 ./scripts/leak-check.sh
+./scripts/brand-check.sh
 ```
+
+### `leak-check.sh` — what must never ship
 
 It scans every file in this repo for strings that must never ship publicly. Wire it as a
 pre-commit hook (the script resolves its real location through the symlink, so any
@@ -103,6 +115,26 @@ The guard matches literal strings only. It cannot catch structural leaks — pro
 shape mirrors the private skill taxonomy one-to-one. Trigger language in `SKILL.md` and
 tool descriptions must stay broad and outcome-shaped; that part is human review.
 
+### `brand-check.sh` — what the buyer is told this product is
+
+Every file here is something a buyer reads. The rename to Retail Reason reached the server
+(`serverInfo.name`, `/healthz`) without ever reaching this repo, so for a while the install
+path advertised a product name the customer had never been billed for. `brand-check.sh`
+fails when the retired name reappears, when a buyer-facing surface stops naming Retail
+Reason, when install copy describes the shipped production endpoint as a local-development
+placeholder, or when a customer-facing placeholder is left unresolved.
+
+It deliberately does **not** police machine identifiers. The marketplace id
+(`walmart-advisory`), the plugin id and skill directory (`walmart-advisor`), the MCP server
+key, the `wadv_live_` key prefix and `WADV_LICENSE_KEY` are wire values pinned by the
+backend's `test/distribution.test.ts`; the MCP tool names (`ask_walmart`,
+`check_walmart_pitfalls`, …) are the protocol contract. Changing any of them is a
+coordinated two-repo change plus a breaking change for every existing install — never a
+side effect of a copy edit.
+
+Naming rule the check encodes: the product is **Retail Reason**, and Walmart is named only
+to describe who the service is for ("for Walmart suppliers") — never as part of the
+product's own name, in a heading, or in a manifest display field.
 
 ## Endpoint
 

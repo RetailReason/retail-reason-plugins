@@ -1,7 +1,8 @@
-# Walmart Advisory Service — Codex CLI setup
+# Retail Reason — Codex CLI setup
 
-Two pieces: the MCP server config (required) and an optional thin skill plugin that teaches
-the model when and how to use the service.
+Retail Reason is a hosted expert service for people who operate on Walmart's supplier and
+seller platforms. Two pieces to set up: the MCP server config (required) and an optional
+thin skill plugin that teaches the model when and how to use the service.
 
 ## 1. MCP server (required)
 
@@ -20,15 +21,18 @@ the model when and how to use the service.
    bearer_token_env_var = "WADV_LICENSE_KEY"
    ```
 
-3. Leave the `localhost` URL for local development; replace it with the production URL when
-   it is provided with your subscription.
+3. Paste the `url` exactly as shipped — it is the live Retail Reason production endpoint,
+   and nothing further is issued with your subscription except the seat key you already
+   have. Change it only if you are running the service yourself, to
+   `http://localhost:8787/mcp`.
 
 4. Restart Codex and confirm the server is listed (`codex mcp list` or the equivalent in
    your version).
 
 Troubleshooting: a connection that never authenticates usually means `WADV_LICENSE_KEY`
-was not set in the environment Codex launched from. An HTTP 401 means the server was
-reached but rejected the key — check for typos or an expired/rotated key.
+was not set in the environment Codex launched from. An HTTP 401 or 403 means the server was
+reached but rejected the key — check for typos, an expired/rotated key, or a key issued for
+a different Retail Reason environment than the `url` above points at.
 
 ## 2. Thin skill plugin (optional, recommended)
 
@@ -36,7 +40,8 @@ The plugin under [`plugins/walmart-advisor/`](./plugins/walmart-advisor/) mirror
 Code plugin: a single routing skill that tells the model to check capabilities at session
 start, route questions to the right tool, and pitfall-check drafts before finalizing.
 Install it the way your Codex version installs local plugins (point it at the
-`plugins/walmart-advisor` directory).
+`plugins/walmart-advisor` directory of your clone of
+`https://github.com/RetailReason/retail-reason-plugins`).
 
 The skill contains no knowledge content — everything substantive is served by the hosted
-service against your seat's license.
+Retail Reason service against your seat's license.

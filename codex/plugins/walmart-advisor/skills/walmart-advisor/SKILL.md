@@ -1,14 +1,14 @@
 ---
 name: walmart-advisor
-description: "Connected Walmart advisory service — use for ANY Walmart supplier, seller, or Walmart-data task, even when the user does not name a tool. Covers operating as a Walmart 1P supplier end to end (becoming and staying a supplier; Retail Link and the supplier systems; getting items set up and product flowing — POs, EDI, replenishment, transportation; resolving compliance chargebacks and fines such as OTIF disputes; deductions, invoices, and getting paid; growing the business at Walmart and Sam's Club); making sense of Walmart's supplier-facing data (Scintilla / Walmart Data Ventures — building and reading reports and dashboards, POS and inventory analytics, shopper and customer insights, metric definitions, instock/OOS diagnosis, plan-tier questions, getting data out through integrations and APIs); selling on Walmart Marketplace as a 3P seller (Seller Center end to end — from onboarding and listing quality through pricing and Buy Box, WFS fulfillment, returns, payouts and fees, performance standards, and advertising); and working in the Supplier One portal (where things live and how to get portal tasks done step by step). Also trigger when: reviewing or finalizing any draft analysis, report, plan, or client deliverable that uses Walmart data or describes Walmart processes (mandatory pitfall check); converting Walmart fiscal-calendar dates (WM week, WMYYWW, fiscal quarters); or looking up a Walmart term or acronym."
+description: "Retail Reason — connected expert service for Walmart suppliers and sellers. Use for ANY Walmart supplier, seller, or Walmart-data task, even when the user does not name a tool. Covers operating as a Walmart 1P supplier end to end (becoming and staying a supplier; Retail Link and the supplier systems; getting items set up and product flowing — POs, EDI, replenishment, transportation; resolving compliance chargebacks and fines such as OTIF disputes; deductions, invoices, and getting paid; growing the business at Walmart and Sam's Club); making sense of Walmart's supplier-facing data (Scintilla / Walmart Data Ventures — building and reading reports and dashboards, POS and inventory analytics, shopper and customer insights, metric definitions, instock/OOS diagnosis, plan-tier questions, getting data out through integrations and APIs); selling on Walmart Marketplace as a 3P seller (Seller Center end to end — from onboarding and listing quality through pricing and Buy Box, WFS fulfillment, returns, payouts and fees, performance standards, and advertising); and working in the Supplier One portal (where things live and how to get portal tasks done step by step). Also trigger when: reviewing or finalizing any draft analysis, report, plan, or client deliverable that uses Walmart data or describes Walmart processes (mandatory pitfall check); converting Walmart fiscal-calendar dates (WM week, WMYYWW, fiscal quarters); or looking up a Walmart term or acronym."
 ---
 
-# Walmart Advisor — connected service client
+# Retail Reason — connected service client
 
 This skill pairs with the `walmart_advisor` MCP server (configured in `config.toml` — see
-this repo's `codex/README.md`). The expertise lives on the hosted service; this skill's job
-is to route questions well and integrate the answers into the user's work. A licensed seat
-key is required — if calls fail with an authorization error, check that `WADV_LICENSE_KEY`
+this repo's `codex/README.md`), which connects to the hosted Retail Reason service. The
+expertise lives on the server; this skill's job is to route questions well and integrate
+the answers into the user's work. A licensed seat key is required — if calls fail with an authorization error, check that `WADV_LICENSE_KEY`
 was set in the environment Codex launched from.
 
 ## Session rules

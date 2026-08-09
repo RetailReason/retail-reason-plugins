@@ -1,11 +1,11 @@
-# Walmart Advisory Service — Codex CLI MCP server config.
+# Retail Reason — Codex CLI MCP server config.
 # Paste into ~/.codex/config.toml (global) or .codex/config.toml (trusted project).
 #
 # Set your seat key in the environment BEFORE launching Codex:
 #   export WADV_LICENSE_KEY="wadv_live_..."
 #
-# Leave the localhost url for local development; swap in the production URL
-# when it is provided with your subscription.
+# The url below is the live Retail Reason production endpoint — paste it as-is. Change it
+# only if you are running the service yourself, to http://localhost:8787/mcp
 
 [mcp_servers.walmart_advisor]
 url = "https://mcp.retailreason.com/mcp"

@@ -1,7 +1,7 @@
 {
   "name": "walmart-advisor",
   "version": "0.1.0",
-  "description": "Connected client for the Walmart Advisory Service. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted service and require a licensed seat key (see codex/README.md for the MCP server setup).",
+  "description": "Retail Reason — connected expert service for Walmart suppliers and sellers. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted Retail Reason service and require a licensed seat key (see codex/README.md for the MCP server setup).",
   "author": {
     "name": "Startup Success Lab",
     "email": "matt@startupsuccesslab.com"
@@ -19,14 +19,14 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Walmart Advisor",
-    "shortDescription": "Connected Walmart advisory service client",
-    "longDescription": "Connected client for the Walmart Advisory Service. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted service and require a licensed seat key.",
+    "displayName": "Retail Reason",
+    "shortDescription": "Retail Reason client for Walmart suppliers and sellers",
+    "longDescription": "Retail Reason — connected expert service for Walmart suppliers and sellers. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted Retail Reason service and require a licensed seat key.",
     "developerName": "Startup Success Lab",
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": [
-      "Ask the Walmart advisory service a supplier question.",
+      "Ask Retail Reason a Walmart supplier question.",
       "Pitfall-check this draft before I send it to the client.",
       "Convert a Walmart fiscal week to a calendar date."
     ]

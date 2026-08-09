@@ -1,7 +1,7 @@
 {
   "name": "walmart-advisor",
   "version": "0.1.0",
-  "description": "Connected client for the Walmart Advisory Service. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted service and require a licensed seat key.",
+  "description": "Retail Reason — connected expert service for Walmart suppliers and sellers. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted Retail Reason service and require a licensed seat key.",
   "author": {
     "name": "Startup Success Lab",
     "email": "matt@startupsuccesslab.com"
@@ -21,7 +21,7 @@
     "license_key": {
       "type": "string",
       "title": "License key",
-      "description": "Your Walmart Advisory Service seat key (wadv_live_...)",
+      "description": "Your Retail Reason seat key (wadv_live_...)",
       "sensitive": true,
       "required": true
     },
