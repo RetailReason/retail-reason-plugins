@@ -19,7 +19,13 @@ thin skill plugin that teaches the model when and how to use the service.
    [mcp_servers.walmart_advisor]
    url = "https://mcp.retailreason.com/mcp"
    bearer_token_env_var = "WADV_LICENSE_KEY"
+   tool_timeout_sec = 360
    ```
+
+   Keep the 360-second tool timeout during the initial launch. A request can legitimately use a
+   provider retry and one output-guard regeneration, which can outlast Codex's shorter default.
+   This is a temporary compatibility bridge: revisit it after production latency data supports
+   a lower end-to-end service deadline.
 
 3. Paste the `url` exactly as shipped — it is the live Retail Reason production endpoint,
    and nothing further is issued with your subscription except the seat key you already
