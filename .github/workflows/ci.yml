@@ -1,0 +1,36 @@
+name: thin-client-ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: thin-client-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24.14.0
+      - name: Validate shipped JSON
+        run: |
+          node -e "for (const file of process.argv.slice(1)) JSON.parse(require('node:fs').readFileSync(file, 'utf8'))" \
+            .claude-plugin/marketplace.json \
+            plugins/walmart-advisor/.claude-plugin/plugin.json \
+            codex/plugins/walmart-advisor/.codex-plugin/plugin.json \
+            capabilities/capabilities.json
+      - name: Verify buyer-facing product and access contract
+        run: ./scripts/brand-check.sh
+      - name: Verify static public-distribution leak guard
+        run: ./scripts/leak-check.sh

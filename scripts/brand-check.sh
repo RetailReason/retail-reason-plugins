@@ -128,7 +128,35 @@ report "localhost mentioned without the full http://localhost:8787/mcp value" "$
 # --- 4. No unresolved placeholders on a paid product's docs -----------------------------
 report "unresolved placeholder in customer-facing docs" "$(scan '_placeholder|<repo-url-or-path>|TBD')"
 
-# --- 5. Verdict -------------------------------------------------------------------------
+# --- 5. Launch access contract must stay aligned ----------------------------------------
+contract_missing=""
+require_text() { # require_text <relative-file> <literal> <label>
+  rel="$1"
+  literal="$2"
+  label="$3"
+  if ! grep -qF "$literal" "$REPO_DIR/$rel"; then
+    contract_missing="$contract_missing$rel: missing $label
+"
+  fi
+}
+require_text "README.md" "two active keys" "two-active-key rule"
+require_text "README.md" "180 days" "180-day key lifetime"
+require_text "README.md" 'workspace_id' "workspace selection"
+require_text "README.md" 'including `get_capabilities`' "workspace-bound capability lookup"
+require_text "README.md" "Hosted Claude and ChatGPT" "four-client launch split"
+require_text "codex/README.md" 'including `get_capabilities`' "workspace-bound capability lookup"
+require_text "plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
+require_text "codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
+require_text "plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'including `get_capabilities`' "workspace-bound capability lookup"
+require_text "codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'including `get_capabilities`' "workspace-bound capability lookup"
+require_text "plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'already retried within its bounded' "bounded retry wording"
+require_text "codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'already retried within its bounded' "bounded retry wording"
+report "launch access contract missing" "$contract_missing"
+
+stale_access="$(scan 'license key|licensed seat key|licensing or allowance message|seat credential|revocation is per seat|areas this seat is licensed for|keys? (are|remain) .*diagnostics only|coming in a later phase|attempt is already charged to the seat')"
+report "stale launch access contract" "$stale_access"
+
+# --- 6. Verdict -------------------------------------------------------------------------
 if [ "$FAIL" -ne 0 ]; then
   echo "brand-check FAILED — the buyer-facing identity or install copy has drifted."
   exit 1
