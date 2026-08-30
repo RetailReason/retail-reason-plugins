@@ -9,8 +9,11 @@ verified (every answer carries an `as_of` verification date).
 
 This repository contains only the **thin clients**: a Claude Code plugin, a Codex CLI
 config, and the public capability map. All expertise is delivered by the hosted service
-over an authenticated MCP connection; a licensed seat key (`wadv_live_...`) is required.
-Keys are per-seat — don't share them.
+over an authenticated MCP connection; a user-bound access key (`wadv_live_...`) is required
+for Claude Code and Codex.
+Keys are bound to one named user and Retail Reason account — do not share them. Each named
+user may keep at most two keys active so rotation can overlap; every key expires within 180 days
+and can be revoked sooner by the user or an account owner/admin.
 
 Retail Reason is an independent product. It is not affiliated with, endorsed by, or a
 product of Walmart Inc.; "Walmart" and the platform names below are used only to describe
@@ -33,9 +36,11 @@ who the service is for and what it covers.
    (`walmart-advisor` and `walmart-advisory` are the plugin and marketplace identifiers.
    The product is Retail Reason; those ids are frozen so existing installs keep working.)
 
-3. When prompted, enter your **license key** (`wadv_live_...`). Leave **Server URL** at its
-   default — it already points at the live Retail Reason service. Change it only if you are
-   running the service yourself, to `http://localhost:8787/mcp`.
+3. When prompted, enter a **Retail Reason access key** (`wadv_live_...`) from your account's
+   key-management screen. This repository cannot issue a key and deliberately does not name
+   an account URL before that surface passes launch acceptance. Leave **Server URL** at its
+   shipped value. Change it only if you are running the service yourself, to
+   `http://localhost:8787/mcp`.
 
 4. Restart Claude Code and ask any Walmart supplier/seller question to confirm it works.
 
@@ -52,26 +57,43 @@ See [`codex/README.md`](./codex/README.md): export `WADV_LICENSE_KEY`, paste
 [`codex/config-snippet.toml`](./codex/config-snippet.toml) into `~/.codex/config.toml`, and
 optionally install the thin skill plugin under `codex/plugins/`.
 
-## Other platforms
+## Hosted Claude and ChatGPT
 
-claude.ai / ChatGPT connectors are coming in a later phase.
+Hosted Claude and ChatGPT are launch clients, but they do not use the CLI key above. They
+connect through Retail Reason's WorkOS-backed OAuth flow from the account application after
+each hosted path passes launch acceptance. Follow the in-account connection instructions;
+do not paste a `wadv_live_...` key into either hosted client. This repository intentionally
+does not invent a connector URL or claim that an unaccepted path is live.
+
+## Key and workspace management
+
+- Create a separate key for each named user; never reuse an owner, advisor, or client-guest
+  key for another person.
+- A user may have two active keys at once for overlap during rotation. Create the replacement,
+  update Claude Code/Codex, verify it, then revoke the old key. Keys expire after at most 180
+  days even if they are not rotated manually.
+- Users can revoke their own keys. Account owners/admins can revoke any key in their account.
+  Revocation is the first response to a copied, exposed, or lost key.
+- Operator accounts normally have one workspace. Advisor users with more than one available
+  client workspace select the workspace for each conversation; the client passes its
+  `workspace_id` on every workspace-sensitive call, including `get_capabilities`, questions,
+  and pitfall checks. A client guest is limited to the one workspace assigned by the Advisor
+  Practice or Advisor Network account.
 
 ## The capability map (`capabilities/capabilities.json`)
 
 This file is the curated, public description of what the service covers. **No client reads it.**
-It is ingested by the hosted service, and the `get_capabilities` tool renders it per seat — so
-what a user sees differs from the file in two ways:
+It is ingested by the hosted service, and the `get_capabilities` tool renders the same four
+subject domains for every paid plan. A workspace's verified Scintilla tier changes which guidance
+is applicable to that workspace; it does not remove a commercial subject domain. The response is:
 
-- **Filtered to the seat.** Only the areas that seat is licensed for are rendered; a buyer is
-  never shown an area they cannot use. A Charter data seat implicitly covers the Basic scope.
-- **Merged and retitled.** The file is keyed by entitlement (`supplier_academy`,
+- **Merged and retitled.** The file is keyed internally (`supplier_academy`,
   `scintilla_basic`, `scintilla_charter`, `marketplace`, `supplier_one`); the answer is grouped
   under four presented areas — **Walmart supplier fundamentals**, **Scintilla / Walmart data**,
-  **Walmart Marketplace**, **Supplier One**. The two Scintilla entitlements merge into the one
-  Scintilla area (plan tier is an entitlement detail, not a browsing surface), with their topics
-  and example questions concatenated and de-duplicated.
+  **Walmart Marketplace**, **Supplier One**. The two Scintilla source sets merge into the one
+  Scintilla area, with topics and example questions concatenated and de-duplicated.
 
-Editing this file changes what every seat sees, but only once the service re-ingests the corpus —
+Editing this file changes what paid users see, but only once the service re-ingests the corpus —
 reinstalling the plugin changes nothing. Keep entries outcome-shaped: the leak-guard below cannot
 catch a topic list that mirrors internal structure.
 
@@ -80,7 +102,7 @@ catch a topic list that mirrors internal structure.
 Support is by email: **matt@startupsuccesslab.com** — a monitored mailbox, answered by the
 operator directly. (Startup Success Lab is the entity behind Retail Reason; a dedicated
 support address moves here when it exists.) Include your org name and roughly when the
-problem happened; never include your license key.
+problem happened; never include your access key.
 
 ## Contributing / maintainers
 
@@ -90,6 +112,11 @@ Before committing, run both guards — they must pass:
 ./scripts/leak-check.sh
 ./scripts/brand-check.sh
 ```
+
+Clean-clone CI validates every shipped JSON file and runs the branding and static leak
+guards on every pull request and `main` push. Because that public CI checkout cannot read
+the private corpus repository, a release still requires a separately recorded successful
+`leak-check.sh --strict` run against the exact corpus source checkout.
 
 ### `leak-check.sh` — what must never ship
 
@@ -138,14 +165,14 @@ product's own name, in a heading, or in a manifest display field.
 
 ## Endpoint
 
-The plugin ships pointing at the production service:
+The plugin ships with this MCP endpoint configured:
 
     https://mcp.retailreason.com/mcp
 
-The MCP endpoint has its own host, separate from `api.retailreason.com` (reserved for the
-account/billing REST API): the two have different authentication, rate limits and abuse
-profiles, and separating them keeps those policies independent.
+The endpoint has its own host, separate from the account/billing API. Access still requires
+an active account and user-bound key; the endpoint being reachable is not evidence that a
+customer's launch provisioning path has passed acceptance.
 
 To run against a local backend instead, set the plugin's **Server URL** config value to
 `http://localhost:8787/mcp` (Claude Code prompts for it at install; Codex reads it from
-`config-snippet.toml`). The license key is unchanged either way.
+`config-snippet.toml`). The access key is unchanged either way.

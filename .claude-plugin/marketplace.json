@@ -4,12 +4,12 @@
     "name": "Startup Success Lab",
     "email": "matt@startupsuccesslab.com"
   },
-  "description": "Retail Reason — a licensed, connected expert service for Walmart suppliers and sellers: 1P suppliers, 3P Marketplace sellers, and the advisors who serve them. This marketplace installs the thin client plugin; expertise is delivered by the hosted Retail Reason service (seat key required).",
+  "description": "Retail Reason — a connected expert service for Walmart suppliers and sellers: 1P suppliers, 3P Marketplace sellers, and the advisors who serve them. This marketplace installs the thin client plugin; expertise is delivered by the hosted Retail Reason service (user-bound access key required).",
   "plugins": [
     {
       "name": "walmart-advisor",
       "source": "./plugins/walmart-advisor",
-      "description": "Retail Reason client for Walmart suppliers and sellers: expert answers on 1P supplier operations (onboarding, compliance, chargebacks, deductions, merchandising), Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal — plus a pitfall check for any Walmart deliverable, a glossary lookup, and a fiscal-calendar converter. Requires a Retail Reason seat key."
+      "description": "Retail Reason client for Walmart suppliers and sellers: expert answers on 1P supplier operations (onboarding, compliance, chargebacks, deductions, merchandising), Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal — plus a pitfall check for any Walmart deliverable, a glossary lookup, and a fiscal-calendar converter. Requires a user-bound Retail Reason access key."
     }
   ]
 }
