@@ -2,8 +2,9 @@ name: thin-client-ci
 
 on:
   pull_request:
-  push:
-    branches: [main]
+
+# Pull-request jobs run against GitHub's merge ref. The accepted merge tree is therefore already
+# covered; do not spend a second full run on main when that tree is byte-identical.
 
 permissions:
   contents: read
@@ -28,6 +29,7 @@ jobs:
           node -e "for (const file of process.argv.slice(1)) JSON.parse(require('node:fs').readFileSync(file, 'utf8'))" \
             .claude-plugin/marketplace.json \
             plugins/walmart-advisor/.claude-plugin/plugin.json \
+            plugins/walmart-advisor/.mcp.json \
             codex/plugins/walmart-advisor/.codex-plugin/plugin.json \
             capabilities/capabilities.json
       - name: Verify buyer-facing product and access contract

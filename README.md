@@ -57,13 +57,16 @@ See [`codex/README.md`](./codex/README.md): export `WADV_LICENSE_KEY`, paste
 [`codex/config-snippet.toml`](./codex/config-snippet.toml) into `~/.codex/config.toml`, and
 optionally install the thin skill plugin under `codex/plugins/`.
 
-## Hosted Claude and ChatGPT
+## Hosted and command-line launch clients
 
-Hosted Claude and ChatGPT are launch clients, but they do not use the CLI key above. They
-connect through Retail Reason's WorkOS-backed OAuth flow from the account application after
-each hosted path passes launch acceptance. Follow the in-account connection instructions;
-do not paste a `wadv_live_...` key into either hosted client. This repository intentionally
-does not invent a connector URL or claim that an unaccepted path is live.
+Supported at launch: Claude hosted, Claude Code, and Codex CLI. Claude hosted connects through
+Retail Reason's WorkOS-backed OAuth flow from the account application after that path passes
+launch acceptance; it does not use the CLI key above. Follow the in-account connection
+instructions, and never paste a `wadv_live_...` key into Claude hosted.
+
+ChatGPT is coming soon and is not supported at launch. It remains disabled, and no ChatGPT
+subscription or admin setup is required for the supported launch paths. This
+repository intentionally does not invent a ChatGPT connector URL or imply that path is live.
 
 ## Key and workspace management
 
@@ -114,7 +117,8 @@ Before committing, run both guards — they must pass:
 ```
 
 Clean-clone CI validates every shipped JSON file and runs the branding and static leak
-guards on every pull request and `main` push. Because that public CI checkout cannot read
+guards once on every pull request. The byte-identical merge to `main` does not rerun those
+checks. Because that public CI checkout cannot read
 the private corpus repository, a release still requires a separately recorded successful
 `leak-check.sh --strict` run against the exact corpus source checkout.
 
