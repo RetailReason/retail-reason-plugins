@@ -143,7 +143,8 @@ require_text "README.md" "two active keys" "two-active-key rule"
 require_text "README.md" "180 days" "180-day key lifetime"
 require_text "README.md" 'workspace_id' "workspace selection"
 require_text "README.md" 'including `get_capabilities`' "workspace-bound capability lookup"
-require_text "README.md" "Hosted Claude and ChatGPT" "four-client launch split"
+require_text "README.md" "Supported at launch: Claude hosted, Claude Code, and Codex CLI." "exact three-client launch support"
+require_text "README.md" "ChatGPT is coming soon and is not supported at launch." "planned ChatGPT status"
 require_text "codex/README.md" 'including `get_capabilities`' "workspace-bound capability lookup"
 require_text "plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
 require_text "codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
@@ -155,6 +156,9 @@ report "launch access contract missing" "$contract_missing"
 
 stale_access="$(scan 'license key|licensed seat key|licensing or allowance message|seat credential|revocation is per seat|areas this seat is licensed for|keys? (are|remain) .*diagnostics only|coming in a later phase|attempt is already charged to the seat')"
 report "stale launch access contract" "$stale_access"
+
+stale_client_support="$(scan 'hosted claude and chatgpt are launch clients|chatgpt business|four[- ]client')"
+report "stale client-support claim" "$stale_client_support"
 
 # --- 6. Verdict -------------------------------------------------------------------------
 if [ "$FAIL" -ne 0 ]; then
