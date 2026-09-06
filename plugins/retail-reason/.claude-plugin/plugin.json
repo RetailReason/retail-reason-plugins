@@ -1,5 +1,5 @@
 {
-  "name": "walmart-advisor",
+  "name": "retail-reason",
   "displayName": "Retail Reason",
   "version": "0.1.0",
   "description": "Retail Reason — connected expert service for Walmart suppliers and sellers. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted Retail Reason service and require a user-bound access key.",

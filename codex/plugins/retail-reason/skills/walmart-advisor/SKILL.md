@@ -5,7 +5,7 @@ description: "Retail Reason — connected expert service for Walmart suppliers a
 
 # Retail Reason — connected service client
 
-This skill pairs with the `walmart_advisor` MCP server (configured in `config.toml` — see
+This skill pairs with the `retail_reason` MCP server (configured in `config.toml` — see
 this repo's `codex/README.md`), which connects to the hosted Retail Reason service. The
 expertise lives on the server; this skill's job is to route questions well and integrate
 the answers into the user's work. A user/account-bound Retail Reason key is required — if calls

@@ -17,7 +17,7 @@ thin skill plugin that teaches the model when and how to use the service.
    `~/.codex/config.toml`:
 
    ```toml
-   [mcp_servers.walmart_advisor]
+   [mcp_servers.retail_reason]
    url = "https://mcp.retailreason.com/mcp"
    bearer_token_env_var = "WADV_LICENSE_KEY"
    tool_timeout_sec = 360
@@ -53,11 +53,11 @@ workspace assigned by an Advisor Practice or Advisor Network account.
 
 ## 2. Thin skill plugin (optional, recommended)
 
-The plugin under [`plugins/walmart-advisor/`](./plugins/walmart-advisor/) mirrors the Claude
+The plugin under [`plugins/retail-reason/`](./plugins/retail-reason/) mirrors the Claude
 Code plugin: a single routing skill that tells the model to check capabilities at session
 start, route questions to the right tool, and pitfall-check drafts before finalizing.
 Install it the way your Codex version installs local plugins (point it at the
-`plugins/walmart-advisor` directory of your clone of
+`plugins/retail-reason` directory of your clone of
 `https://github.com/RetailReason/retail-reason-plugins`).
 
 The skill contains no knowledge content — everything substantive is served by the hosted

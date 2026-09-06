@@ -93,10 +93,10 @@ README.md
 codex/README.md
 codex/config-snippet.toml
 .claude-plugin/marketplace.json
-plugins/walmart-advisor/.claude-plugin/plugin.json
-codex/plugins/walmart-advisor/.codex-plugin/plugin.json
-plugins/walmart-advisor/skills/walmart-advisor/SKILL.md
-codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md
+plugins/retail-reason/.claude-plugin/plugin.json
+codex/plugins/retail-reason/.codex-plugin/plugin.json
+plugins/retail-reason/skills/walmart-advisor/SKILL.md
+codex/plugins/retail-reason/skills/walmart-advisor/SKILL.md
 "
 missing=""
 for rel in $SURFACES; do
@@ -146,12 +146,12 @@ require_text "README.md" 'including `get_capabilities`' "workspace-bound capabil
 require_text "README.md" "Supported at launch: Claude hosted, Claude Code, and Codex CLI." "exact three-client launch support"
 require_text "README.md" "ChatGPT is coming soon and is not supported at launch." "planned ChatGPT status"
 require_text "codex/README.md" 'including `get_capabilities`' "workspace-bound capability lookup"
-require_text "plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
-require_text "codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
-require_text "plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'including `get_capabilities`' "workspace-bound capability lookup"
-require_text "codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'including `get_capabilities`' "workspace-bound capability lookup"
-require_text "plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'already retried within its bounded' "bounded retry wording"
-require_text "codex/plugins/walmart-advisor/skills/walmart-advisor/SKILL.md" 'already retried within its bounded' "bounded retry wording"
+require_text "plugins/retail-reason/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
+require_text "codex/plugins/retail-reason/skills/walmart-advisor/SKILL.md" 'list_workspaces' "workspace discovery"
+require_text "plugins/retail-reason/skills/walmart-advisor/SKILL.md" 'including `get_capabilities`' "workspace-bound capability lookup"
+require_text "codex/plugins/retail-reason/skills/walmart-advisor/SKILL.md" 'including `get_capabilities`' "workspace-bound capability lookup"
+require_text "plugins/retail-reason/skills/walmart-advisor/SKILL.md" 'already retried within its bounded' "bounded retry wording"
+require_text "codex/plugins/retail-reason/skills/walmart-advisor/SKILL.md" 'already retried within its bounded' "bounded retry wording"
 report "launch access contract missing" "$contract_missing"
 
 stale_access="$(scan 'license key|licensed seat key|licensing or allowance message|seat credential|revocation is per seat|areas this seat is licensed for|keys? (are|remain) .*diagnostics only|coming in a later phase|attempt is already charged to the seat')"

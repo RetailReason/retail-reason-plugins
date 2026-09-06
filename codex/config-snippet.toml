@@ -8,7 +8,7 @@
 # The url below is the live Retail Reason production endpoint — paste it as-is. Change it
 # only if you are running the service yourself, to http://localhost:8787/mcp
 
-[mcp_servers.walmart_advisor]
+[mcp_servers.retail_reason]
 url = "https://mcp.retailreason.com/mcp"
 bearer_token_env_var = "WADV_LICENSE_KEY"
 # Temporary launch setting: the service may use a provider retry plus one guarded regeneration.

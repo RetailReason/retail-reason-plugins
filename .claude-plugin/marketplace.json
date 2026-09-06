@@ -1,5 +1,5 @@
 {
-  "name": "walmart-advisory",
+  "name": "retail-reason",
   "owner": {
     "name": "Startup Success Lab",
     "email": "matt@retailreason.com"
@@ -9,8 +9,8 @@
   },
   "plugins": [
     {
-      "name": "walmart-advisor",
-      "source": "./plugins/walmart-advisor",
+      "name": "retail-reason",
+      "source": "./plugins/retail-reason",
       "description": "Retail Reason client for Walmart suppliers and sellers: expert answers on 1P supplier operations (onboarding, compliance, chargebacks, deductions, merchandising), Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal — plus a pitfall check for any Walmart deliverable, a glossary lookup, and a fiscal-calendar converter. Requires a user-bound Retail Reason access key.",
       "homepage": "https://retailreason.com/docs/connect/",
       "repository": "https://github.com/RetailReason/retail-reason-plugins",
