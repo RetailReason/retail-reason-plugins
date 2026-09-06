@@ -10,7 +10,8 @@ verified (every answer carries an `as_of` verification date).
 This repository contains only the **thin clients**: a Claude Code plugin, a Codex CLI
 config, and the public capability map. All expertise is delivered by the hosted service
 over an authenticated MCP connection; a user-bound access key (`wadv_live_...`) is required
-for Claude Code and Codex.
+for Claude Code and Codex. The current, maintained setup instructions for every supported
+client live at <https://retailreason.com/docs/connect/>; this README mirrors them.
 Keys are bound to one named user and Retail Reason account — do not share them. Each named
 user may keep at most two keys active so rotation can overlap; every key expires within 180 days
 and can be revoked sooner by the user or an account owner/admin.
@@ -36,10 +37,10 @@ who the service is for and what it covers.
    (`walmart-advisor` and `walmart-advisory` are the plugin and marketplace identifiers.
    The product is Retail Reason; those ids are frozen so existing installs keep working.)
 
-3. When prompted, enter a **Retail Reason access key** (`wadv_live_...`) from your account's
-   key-management screen. This repository cannot issue a key and deliberately does not name
-   an account URL before that surface passes launch acceptance. Leave **Server URL** at its
-   shipped value. Change it only if you are running the service yourself, to
+3. When prompted, enter a **Retail Reason access key** (`wadv_live_...`) created in your
+   Retail Reason account at <https://app.retailreason.com/app/>. An active paid plan is
+   required; there is no trial, and this repository cannot issue a key. Leave **Server URL**
+   at its shipped value. Change it only if you are running the service yourself, to
    `http://localhost:8787/mcp`.
 
 4. Restart Claude Code and ask any Walmart supplier/seller question to confirm it works.
@@ -102,9 +103,8 @@ catch a topic list that mirrors internal structure.
 
 ## Support
 
-Support is by email: **matt@startupsuccesslab.com** — a monitored mailbox, answered by the
-operator directly. (Startup Success Lab is the entity behind Retail Reason; a dedicated
-support address moves here when it exists.) Include your org name and roughly when the
+Support is by email: **matt@retailreason.com** — a monitored mailbox, answered by the
+operator directly. (Startup Success Lab LLC is the entity behind Retail Reason.) Include your org name and roughly when the
 problem happened; never include your access key.
 
 ## Contributing / maintainers
@@ -180,3 +180,9 @@ customer's launch provisioning path has passed acceptance.
 To run against a local backend instead, set the plugin's **Server URL** config value to
 `http://localhost:8787/mcp` (Claude Code prompts for it at install; Codex reads it from
 `config-snippet.toml`). The access key is unchanged either way.
+
+## License
+
+The files in this repository are released under the [MIT License](./LICENSE). The hosted
+Retail Reason service, its knowledge corpus, and its answers are not part of this repository
+and are governed by the Retail Reason Terms at <https://retailreason.com/terms/>.

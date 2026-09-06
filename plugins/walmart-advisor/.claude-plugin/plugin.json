@@ -4,7 +4,7 @@
   "description": "Retail Reason — connected expert service for Walmart suppliers and sellers. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted Retail Reason service and require a user-bound access key.",
   "author": {
     "name": "Startup Success Lab",
-    "email": "matt@startupsuccesslab.com"
+    "email": "matt@retailreason.com"
   },
   "keywords": [
     "walmart",
@@ -32,5 +32,8 @@
       "required": false,
       "default": "https://mcp.retailreason.com/mcp"
     }
-  }
+  },
+  "homepage": "https://retailreason.com/docs/connect/",
+  "repository": "https://github.com/RetailReason/retail-reason-plugins",
+  "license": "MIT"
 }
