@@ -38,7 +38,7 @@ who the service is for and what it covers.
    The product is Retail Reason; those ids are frozen so existing installs keep working.)
 
 3. When prompted, enter a **Retail Reason access key** (`wadv_live_...`) created in your
-   Retail Reason account at <https://app.retailreason.com/app/>. An active paid plan is
+   Retail Reason account at <https://app.retailreason.com/app/access>. An active paid plan is
    required; there is no trial, and this repository cannot issue a key. Leave **Server URL**
    at its shipped value. Change it only if you are running the service yourself, to
    `http://localhost:8787/mcp`.
