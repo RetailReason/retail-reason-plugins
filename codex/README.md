@@ -53,6 +53,17 @@ workspace assigned by an Advisor Practice or Advisor Network account.
 
 ## 2. Thin skill plugin (optional, recommended)
 
+Codex can install the skill plugin from this repository's marketplace manifest
+(`.agents/plugins/marketplace.json`):
+
+```
+codex plugin marketplace add RetailReason/retail-reason-plugins
+```
+
+then choose **Retail Reason** in the plugin picker. The MCP server config in section 1 is still
+required; the plugin only teaches the model when and how to use the service.
+
+
 The plugin under [`plugins/retail-reason/`](./plugins/retail-reason/) mirrors the Claude
 Code plugin: a single routing skill that tells the model to check capabilities at session
 start, route questions to the right tool, and pitfall-check drafts before finalizing.

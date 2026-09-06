@@ -31,6 +31,7 @@ jobs:
             plugins/retail-reason/.claude-plugin/plugin.json \
             plugins/retail-reason/.mcp.json \
             codex/plugins/retail-reason/.codex-plugin/plugin.json \
+            .agents/plugins/marketplace.json \
             capabilities/capabilities.json
       - name: Verify buyer-facing product and access contract
         run: ./scripts/brand-check.sh

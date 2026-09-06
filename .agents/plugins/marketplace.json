@@ -1,0 +1,20 @@
+{
+  "name": "retail-reason",
+  "interface": {
+    "displayName": "Retail Reason"
+  },
+  "plugins": [
+    {
+      "name": "retail-reason",
+      "source": {
+        "source": "local",
+        "path": "./codex/plugins/retail-reason"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_FIRST_USE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

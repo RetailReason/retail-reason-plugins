@@ -29,6 +29,12 @@
       "Ask Retail Reason a Walmart supplier question.",
       "Pitfall-check this draft before I send it to the client.",
       "Convert a Walmart fiscal week to a calendar date."
-    ]
-  }
+    ],
+    "websiteURL": "https://retailreason.com/docs/connect/",
+    "privacyPolicyURL": "https://retailreason.com/privacy/",
+    "termsOfServiceURL": "https://retailreason.com/terms/"
+  },
+  "homepage": "https://retailreason.com/docs/connect/",
+  "repository": "https://github.com/RetailReason/retail-reason-plugins",
+  "license": "MIT"
 }
