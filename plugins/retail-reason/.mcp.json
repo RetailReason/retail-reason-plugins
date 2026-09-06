@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "walmart-advisor": {
+    "retail-reason": {
       "type": "http",
       "url": "${user_config.server_url}",
       "headers": {

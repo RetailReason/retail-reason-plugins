@@ -28,9 +28,9 @@ jobs:
         run: |
           node -e "for (const file of process.argv.slice(1)) JSON.parse(require('node:fs').readFileSync(file, 'utf8'))" \
             .claude-plugin/marketplace.json \
-            plugins/walmart-advisor/.claude-plugin/plugin.json \
-            plugins/walmart-advisor/.mcp.json \
-            codex/plugins/walmart-advisor/.codex-plugin/plugin.json \
+            plugins/retail-reason/.claude-plugin/plugin.json \
+            plugins/retail-reason/.mcp.json \
+            codex/plugins/retail-reason/.codex-plugin/plugin.json \
             capabilities/capabilities.json
       - name: Verify buyer-facing product and access contract
         run: ./scripts/brand-check.sh

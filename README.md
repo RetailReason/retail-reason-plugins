@@ -31,11 +31,12 @@ who the service is for and what it covers.
 2. Install the plugin:
 
    ```
-   /plugin install walmart-advisor@walmart-advisory
+   /plugin install retail-reason@retail-reason
    ```
 
-   (`walmart-advisor` and `walmart-advisory` are the plugin and marketplace identifiers.
-   The product is Retail Reason; those ids are frozen so existing installs keep working.)
+   (`retail-reason` is both the plugin and the marketplace identifier. Installs made before
+   September 6, 2026 used `walmart-advisor@walmart-advisory`; remove that marketplace with
+   `/plugin marketplace remove walmart-advisory`, then add and install as above.)
 
 3. When prompted, enter a **Retail Reason access key** (`wadv_live_...`) created in your
    Retail Reason account at <https://app.retailreason.com/app/access>. An active paid plan is
@@ -46,7 +47,7 @@ who the service is for and what it covers.
 4. Restart Claude Code and ask any Walmart supplier/seller question to confirm it works.
 
 **If the key stops working after a restart:** the key is stored in your OS keychain and can
-occasionally drop. Re-enter it in the plugin's settings (`/plugin` → walmart-advisor →
+occasionally drop. Re-enter it in the plugin's settings (`/plugin` → Retail Reason →
 configure). If it keeps happening, use the env-var fallback: set
 `export WADV_LICENSE_KEY="wadv_live_..."` in your shell profile and edit the installed
 plugin's `.mcp.json` to read `"Authorization": "Bearer ${WADV_LICENSE_KEY}"` — Claude Code
@@ -155,8 +156,8 @@ fails when the retired name reappears, when a buyer-facing surface stops naming 
 Reason, when install copy describes the shipped production endpoint as a local-development
 placeholder, or when a customer-facing placeholder is left unresolved.
 
-It deliberately does **not** police machine identifiers. The marketplace id
-(`walmart-advisory`), the plugin id and skill directory (`walmart-advisor`), the MCP server
+It deliberately does **not** police machine identifiers. The marketplace and plugin id
+(`retail-reason`), the skill directory (`walmart-advisor`), the MCP server
 key, the `wadv_live_` key prefix and `WADV_LICENSE_KEY` are wire values pinned by the
 backend's `test/distribution.test.ts`; the MCP tool names (`ask_walmart`,
 `check_walmart_pitfalls`, …) are the protocol contract. Changing any of them is a
