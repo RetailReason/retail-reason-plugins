@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.retailreason/intelligence",
+  "title": "Retail Reason Intelligence",
+  "description": "Dated, confidence-classed answers to Walmart supplier, Sam's Club supplier, Walmart Marketplace seller, and broker or agency operating questions. Remote streamable-HTTP server. Requires an active paid Retail Reason plan: hosted Claude signs in with OAuth; Claude Code and Codex CLI send a per-person access key. Never connects to retailer accounts. Independent of Walmart Inc.",
+  "version": "0.1.0",
+  "websiteUrl": "https://retailreason.com/docs/connect/",
+  "repository": {
+    "url": "https://github.com/RetailReason/retail-reason-plugins",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.retailreason.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <Retail Reason access key> for Claude Code and Codex CLI. Hosted Claude uses OAuth sign-in instead and sends no key.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
