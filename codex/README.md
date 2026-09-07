@@ -64,11 +64,11 @@ then choose **Retail Reason** in the plugin picker. The MCP server config in sec
 required; the plugin only teaches the model when and how to use the service.
 
 
-The plugin under [`plugins/retail-reason/`](./plugins/retail-reason/) mirrors the Claude
+The plugin under [`codex/plugins/retail-reason/`](./plugins/retail-reason/) mirrors the Claude
 Code plugin: a single routing skill that tells the model to check capabilities at session
 start, route questions to the right tool, and pitfall-check drafts before finalizing.
 Install it the way your Codex version installs local plugins (point it at the
-`plugins/retail-reason` directory of your clone of
+`codex/plugins/retail-reason` directory, relative to the root of your clone of
 `https://github.com/RetailReason/retail-reason-plugins`).
 
 The skill contains no knowledge content — everything substantive is served by the hosted

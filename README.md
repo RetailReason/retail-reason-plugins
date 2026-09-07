@@ -57,7 +57,7 @@ expands environment variables in MCP headers.
 
 See [`codex/README.md`](./codex/README.md): export `WADV_LICENSE_KEY`, paste
 [`codex/config-snippet.toml`](./codex/config-snippet.toml) into `~/.codex/config.toml`, and
-optionally install the thin skill plugin under `codex/plugins/`.
+optionally install the [Codex thin skill plugin](./codex/plugins/retail-reason/).
 
 ## Hosted and command-line launch clients
 
