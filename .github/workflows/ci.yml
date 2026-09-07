@@ -32,7 +32,13 @@ jobs:
             plugins/retail-reason/.mcp.json \
             codex/plugins/retail-reason/.codex-plugin/plugin.json \
             .agents/plugins/marketplace.json \
-            capabilities/capabilities.json
+            capabilities/capabilities.json \
+            registry/server.json \
+            registry/server.schema.json
+      - name: Validate Codex marketplace policies and manifest paths
+        run: node scripts/codex-marketplace-check.mjs
+      - name: Validate MCP Registry entry against the retained official schema
+        run: npm exec --yes --package ajv-cli@5.0.0 --package ajv-formats@3.0.1 -- ajv validate --spec=draft7 --strict=false --all-errors -c ajv-formats -s registry/server.schema.json -d registry/server.json
       - name: Verify buyer-facing product and access contract
         run: ./scripts/brand-check.sh
       - name: Verify static public-distribution leak guard

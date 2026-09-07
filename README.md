@@ -1,11 +1,11 @@
 # Retail Reason — client distribution
 
 Retail Reason is a hosted expert service for people who operate on Walmart's
-supplier and seller platforms: 1P suppliers, 3P Marketplace sellers, and the consultants and
+supplier and seller platforms: Walmart suppliers, Sam's Club suppliers, Marketplace sellers, and the consultants and
 agencies who serve them. It answers operational questions with exact specifics — metric
 definitions, screen paths, thresholds, dispute channels — pitfall-checks your draft
-deliverables the way a seasoned Walmart advisor would, and keeps its knowledge continuously
-verified (every answer carries an `as_of` verification date).
+deliverables the way a seasoned Walmart advisor would, and returns an `as_of` verification date with each answer.
+A dated answer is not a promise that every change is detected immediately.
 
 This repository contains only the **thin clients**: a Claude Code plugin, a Codex CLI
 config, and the public capability map. All expertise is delivered by the hosted service
