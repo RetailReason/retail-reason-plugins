@@ -1,8 +1,8 @@
 {
   "name": "retail-reason",
   "displayName": "Retail Reason",
-  "version": "0.1.0",
-  "description": "Retail Reason \u2014 connected expert service for Walmart suppliers, Sam's Club suppliers, and Marketplace sellers. Ask expert questions about Walmart 1P supplier operations, Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal; pitfall-check draft deliverables before they ship; look up Walmart terms; convert Walmart fiscal-calendar dates. Answers come from the hosted Retail Reason service and require a user-bound access key.",
+  "version": "0.1.1",
+  "description": "Retail Reason provides connected expertise for Walmart suppliers, Sam's Club suppliers, and Marketplace sellers. Ask questions about supplier operations, Scintilla reporting, Marketplace selling, and Supplier One; check drafts for pitfalls; look up terms; and convert fiscal-calendar dates. An eligible Retail Reason account with active access is required. Claude Code uses a personal access key; Cowork uses account sign-in.",
   "author": {
     "name": "Startup Success Lab",
     "email": "matt@retailreason.com"
@@ -26,13 +26,6 @@
       "description": "Your user-bound Retail Reason access key (wadv_live_...)",
       "sensitive": true,
       "required": true
-    },
-    "server_url": {
-      "type": "string",
-      "title": "Server URL",
-      "description": "Service endpoint. Leave the default unless you are running the service locally, in which case set http://localhost:8787/mcp",
-      "required": false,
-      "default": "https://mcp.retailreason.com/mcp"
     }
   },
   "homepage": "https://retailreason.com/docs/connect/",

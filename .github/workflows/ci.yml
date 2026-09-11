@@ -37,6 +37,8 @@ jobs:
             registry/server.schema.json
       - name: Validate Codex marketplace policies and manifest paths
         run: node scripts/codex-marketplace-check.mjs
+      - name: Validate Claude plugin connection and skill compatibility
+        run: node scripts/claude-plugin-check.mjs
       - name: Validate MCP Registry entry against the retained official schema
         run: npm exec --yes --package ajv-cli@5.0.0 --package ajv-formats@3.0.1 -- ajv validate --spec=draft7 --strict=false --all-errors -c ajv-formats -s registry/server.schema.json -d registry/server.json
       - name: Verify buyer-facing product and access contract

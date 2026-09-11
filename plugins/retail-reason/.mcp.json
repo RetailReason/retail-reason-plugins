@@ -2,7 +2,7 @@
   "mcpServers": {
     "retail-reason": {
       "type": "http",
-      "url": "${user_config.server_url}",
+      "url": "https://mcp.retailreason.com/mcp",
       "headers": {
         "Authorization": "Bearer ${user_config.license_key}"
       }
