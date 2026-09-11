@@ -43,13 +43,24 @@ npm exec --yes --package ajv-cli@5.0.0 --package ajv-formats@3.0.1 -- ajv valida
 
 No repository check logs in, generates a key, changes DNS, or publishes the entry.
 
-## Keep it current
+## Published entry and future updates
 
-The prepared entry is version `0.1.0`, matching the reviewed service's `serverInfo.version`.
-The September 11, 2026 registry search returned no `com.retailreason` entry, so this remains
-the first-publication candidate. The same readiness check found no MCP ownership TXT
-record on the domain, and the HTTP ownership-proof endpoint returned 404. Ownership
-setup must therefore be completed before this entry can be published. Recheck before
-publishing: registry versions are immutable.
-After publication, any changed entry needs a new version. Coordinate that version with the
-service release, then record the published listing and version in the service runbook.
+`com.retailreason/intelligence` version `0.1.0` was published on September 11, 2026
+at 23:16:17 UTC. The official registry returned it as active, with the approved
+name, title, description, repository, endpoint, and authentication guidance.
+[Read the published entry](https://registry.modelcontextprotocol.io/v0.1/servers/com.retailreason%2Fintelligence/versions/0.1.0).
+
+The public domain-ownership TXT proof is configured. The matching signing key is
+held by the owner in Mac Keychain. Publication used the official registry API,
+with its authentication token kept in memory. The standard publisher CLI stores
+its token in a local file; choose the API workflow when credential policy does
+not allow that storage.
+
+The registry omits `isRequired: false` from its response because false is the
+schema default. The retained entry sets it explicitly; both representations
+leave the personal-key header optional so hosted OAuth remains supported.
+
+Do not publish version `0.1.0` again. Registry versions are immutable. Review any
+future metadata change, select a new version, verify the current ownership proof,
+and record the resulting publication. The published entry's version matches the
+reviewed service's `serverInfo.version`.
