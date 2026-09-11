@@ -10,8 +10,8 @@ authenticated MCP connection, so the only setup is the key that identifies the u
 
 ## Before you start
 
-- An active paid Retail Reason plan is required. There is no trial; the first purchase carries a
-  seven-day refund under the published terms. Plans and purchase: https://retailreason.com/pricing/
+- An eligible Retail Reason account with active access is required. Follow the current connection
+  guide for your client and account: https://retailreason.com/docs/connect/
 - Keys are bound to one named user and one Retail Reason account. Never share a key between
   people, and never paste one into a chat, a file, or a repository.
 

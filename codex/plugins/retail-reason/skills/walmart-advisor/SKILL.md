@@ -25,7 +25,7 @@ launched from and that the key has not expired or been revoked. Keys are never s
    keep workspace-bound situation details across follow-ups.
 3. **Start with capabilities.** Call `get_capabilities` once at session start, and again
    whenever the user asks what this service can do. It returns the topic areas and example
-   questions currently supported for every paid plan — do not promise coverage beyond it.
+   questions currently supported for the account. Do not promise coverage beyond it.
 4. **Route by clarity, not habit.**
    - Area unclear, or the question spans areas (e.g. a data question that turns into a fines
      dispute) → `ask_walmart` (the front door; it routes server-side).
