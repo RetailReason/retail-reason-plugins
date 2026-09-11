@@ -39,8 +39,8 @@ who the service is for and what it covers.
    `/plugin marketplace remove walmart-advisory`, then add and install as above.)
 
 3. When prompted, enter a **Retail Reason access key** (`wadv_live_...`) created in your
-   Retail Reason account at <https://app.retailreason.com/app/access>. An active paid plan is
-   required; there is no trial, and this repository cannot issue a key. Leave **Server URL**
+   Retail Reason account at <https://app.retailreason.com/app/access>. An eligible account with
+   active access is required; this repository cannot issue a key. Leave **Server URL**
    at its shipped value. Change it only if you are running the service yourself, to
    `http://localhost:8787/mcp`.
 
@@ -59,11 +59,11 @@ See [`codex/README.md`](./codex/README.md): export `WADV_LICENSE_KEY`, paste
 [`codex/config-snippet.toml`](./codex/config-snippet.toml) into `~/.codex/config.toml`, and
 optionally install the [Codex thin skill plugin](./codex/plugins/retail-reason/).
 
-## Hosted and command-line launch clients
+## Hosted and command-line clients
 
 Supported at launch: Claude hosted, Claude Code, and Codex CLI. Claude hosted connects through
-Retail Reason's WorkOS-backed OAuth flow from the account application after that path passes
-launch acceptance; it does not use the CLI key above. Follow the in-account connection
+Retail Reason's WorkOS-backed OAuth flow from the account application;
+it does not use the CLI key above. Follow the in-account connection
 instructions, and never paste a `wadv_live_...` key into Claude hosted.
 
 ChatGPT is coming soon and is not supported at launch. It remains disabled, and no ChatGPT
@@ -89,7 +89,7 @@ repository intentionally does not invent a ChatGPT connector URL or imply that p
 
 This file is the curated, public description of what the service covers. **No client reads it.**
 It is ingested by the hosted service, and the `get_capabilities` tool renders the same four
-subject domains for every paid plan. A workspace's verified Scintilla tier changes which guidance
+subject domains for accounts with active access. A workspace's verified Scintilla tier changes which guidance
 is applicable to that workspace; it does not remove a commercial subject domain. The response is:
 
 - **Merged and retitled.** The file is keyed internally (`supplier_academy`,
@@ -98,7 +98,7 @@ is applicable to that workspace; it does not remove a commercial subject domain.
   **Walmart Marketplace**, **Supplier One**. The two Scintilla source sets merge into the one
   Scintilla area, with topics and example questions concatenated and de-duplicated.
 
-Editing this file changes what paid users see, but only once the service re-ingests the corpus —
+Editing this file changes what users see only after the service re-ingests the corpus;
 reinstalling the plugin changes nothing. Keep entries outcome-shaped: the leak-guard below cannot
 catch a topic list that mirrors internal structure.
 
@@ -175,8 +175,8 @@ The plugin ships with this MCP endpoint configured:
     https://mcp.retailreason.com/mcp
 
 The endpoint has its own host, separate from the account/billing API. Access still requires
-an active account and user-bound key; the endpoint being reachable is not evidence that a
-customer's launch provisioning path has passed acceptance.
+an eligible account with active access and a user-bound key for Claude Code and Codex.
+Follow the current connection guide above for your client and account.
 
 To run against a local backend instead, set the plugin's **Server URL** config value to
 `http://localhost:8787/mcp` (Claude Code prompts for it at install; Codex reads it from
