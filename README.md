@@ -1,18 +1,18 @@
-# Retail Reason — client distribution
+# Retail Reason client distribution
 
 Retail Reason is a hosted expert service for people who operate on Walmart's
 supplier and seller platforms: Walmart suppliers, Sam's Club suppliers, Marketplace sellers, and the consultants and
-agencies who serve them. It answers operational questions with exact specifics — metric
-definitions, screen paths, thresholds, dispute channels — pitfall-checks your draft
-deliverables the way a seasoned Walmart advisor would, and returns an `as_of` verification date with each answer.
+agencies who serve them. It answers operational questions about metric definitions, screen paths,
+thresholds and dispute channels. It checks draft deliverables for pitfalls and returns an `as_of`
+verification date with each answer.
 A dated answer is not a promise that every change is detected immediately.
 
-This repository contains only the **thin clients**: a Claude Code plugin, a Codex CLI
+This repository contains only the **thin clients**: a plugin for Claude Code and Cowork, a Codex CLI
 config, and the public capability map. All expertise is delivered by the hosted service
 over an authenticated MCP connection; a user-bound access key (`wadv_live_...`) is required
 for Claude Code and Codex. The current, maintained setup instructions for every supported
 client live at <https://retailreason.com/docs/connect/>; this README mirrors them.
-Keys are bound to one named user and Retail Reason account — do not share them. Each named
+Keys are bound to one named user and Retail Reason account. Do not share them. Each named
 user may keep at most two keys active so rotation can overlap; every key expires within 180 days
 and can be revoked sooner by the user or an account owner/admin.
 
@@ -40,9 +40,8 @@ who the service is for and what it covers.
 
 3. When prompted, enter a **Retail Reason access key** (`wadv_live_...`) created in your
    Retail Reason account at <https://app.retailreason.com/app/access>. An eligible account with
-   active access is required; this repository cannot issue a key. Leave **Server URL**
-   at its shipped value. Change it only if you are running the service yourself, to
-   `http://localhost:8787/mcp`.
+   active access is required; this repository cannot issue a key. The service address is
+   included in the plugin, so no server address needs to be entered.
 
 4. Restart Claude Code and ask any Walmart supplier/seller question to confirm it works.
 
@@ -50,8 +49,25 @@ who the service is for and what it covers.
 occasionally drop. Re-enter it in the plugin's settings (`/plugin` → Retail Reason →
 configure). If it keeps happening, use the env-var fallback: set
 `export WADV_LICENSE_KEY="wadv_live_..."` in your shell profile and edit the installed
-plugin's `.mcp.json` to read `"Authorization": "Bearer ${WADV_LICENSE_KEY}"` — Claude Code
+plugin's `.mcp.json` to read `"Authorization": "Bearer ${WADV_LICENSE_KEY}"`. Claude Code
 expands environment variables in MCP headers.
+
+## Install: Claude Cowork
+
+1. In Claude, open **Customize → Plugins → Add → Add marketplace** and choose **Add from a repository**.
+   Select `RetailReason/retail-reason-plugins` or enter
+   `https://github.com/RetailReason/retail-reason-plugins`, then sync the marketplace.
+2. Add **Retail Reason** and open its **Connectors** tab. Choose **Connect** for `retail-reason`.
+   The server address is `https://mcp.retailreason.com/mcp`.
+3. Use **Sign in now** and **Use Claude's published identity**. Add the connector, then choose
+   **Connect** if sign-in has not opened. Sign in with the same identity that owns your active
+   Retail Reason membership.
+4. Start a new Cowork task and ask a supplier or seller question using Retail Reason. Confirm
+   that a Retail Reason tool returns the answer and its `as_of` verification date.
+
+Cowork uses account sign-in. Do not enter a Claude Code access key as a request header or in chat.
+If authorization fails, share the displayed support reference with matt@retailreason.com.
+The plugin's **Skills** tab should list both `setup` and `walmart-advisor`.
 
 ## Install: Codex CLI
 
@@ -94,7 +110,7 @@ is applicable to that workspace; it does not remove a commercial subject domain.
 
 - **Merged and retitled.** The file is keyed internally (`supplier_academy`,
   `scintilla_basic`, `scintilla_charter`, `marketplace`, `supplier_one`); the answer is grouped
-  under four presented areas — **Walmart supplier fundamentals**, **Scintilla / Walmart data**,
+  under four presented areas: **Walmart supplier fundamentals**, **Scintilla / Walmart data**,
   **Walmart Marketplace**, **Supplier One**. The two Scintilla source sets merge into the one
   Scintilla area, with topics and example questions concatenated and de-duplicated.
 
@@ -104,17 +120,18 @@ catch a topic list that mirrors internal structure.
 
 ## Support
 
-Support is by email: **matt@retailreason.com** — a monitored mailbox, answered by the
+Support is by email at **matt@retailreason.com**, a monitored mailbox answered by the
 operator directly. (Startup Success Lab LLC is the entity behind Retail Reason.) Include your org name and roughly when the
 problem happened; never include your access key.
 
 ## Contributing / maintainers
 
-Before committing, run both guards — they must pass:
+Before committing, run these checks. All must pass:
 
 ```bash
 ./scripts/leak-check.sh
 ./scripts/brand-check.sh
+node scripts/claude-plugin-check.mjs
 ```
 
 Clean-clone CI validates every shipped JSON file and runs the branding and static leak
@@ -123,11 +140,11 @@ checks. Because that public CI checkout cannot read
 the private corpus repository, a release still requires a separately recorded successful
 `leak-check.sh --strict` run against the exact corpus source checkout.
 
-### `leak-check.sh` — what must never ship
+### `leak-check.sh`: what must never ship
 
 It scans every file in this repo for strings that must never ship publicly. Wire it as a
-pre-commit hook (the script resolves its real location through the symlink, so any
-non-zero exit — leak found *or* the check failing to run — blocks the commit):
+pre-commit hook. The script resolves its real location through the symlink. Any non-zero exit
+blocks the commit, whether a leak was found or the check failed to run:
 
 ```bash
 ln -s ../../scripts/leak-check.sh .git/hooks/pre-commit
@@ -135,19 +152,19 @@ ln -s ../../scripts/leak-check.sh .git/hooks/pre-commit
 
 Two modes:
 
-- **Default** — if the private corpus repo is not on the machine, the internal-name
+- **Default**: if the private corpus repo is not on the machine, the internal-name
   denylist is skipped with a note and the static checks still run. This is the contributor
   mode: most machines legitimately lack the corpus repo.
-- **`--strict`** — fails (exit 2) unless the denylist was actually built from the corpus
+- **`--strict`**: fails (exit 2) unless the denylist was actually built from the corpus
   repo. Use this wherever the corpus checkout exists (Matt's machine, release checks):
   `WADV_CORPUS_REPO=path/to/corpus-repo ./scripts/leak-check.sh --strict`. A sibling
   directory with the expected layout is auto-detected when the env var is unset.
 
-The guard matches literal strings only. It cannot catch structural leaks — prose whose
+The guard matches literal strings only. It cannot catch structural leaks: prose whose
 shape mirrors the private skill taxonomy one-to-one. Trigger language in `SKILL.md` and
 tool descriptions must stay broad and outcome-shaped; that part is human review.
 
-### `brand-check.sh` — what the buyer is told this product is
+### `brand-check.sh`: what the buyer is told this product is
 
 Every file here is something a buyer reads. The rename to Retail Reason reached the server
 (`serverInfo.name`, `/healthz`) without ever reaching this repo, so for a while the install
@@ -161,12 +178,12 @@ It deliberately does **not** police machine identifiers. The marketplace and plu
 key, the `wadv_live_` key prefix and `WADV_LICENSE_KEY` are wire values pinned by the
 backend's `test/distribution.test.ts`; the MCP tool names (`ask_walmart`,
 `check_walmart_pitfalls`, …) are the protocol contract. Changing any of them is a
-coordinated two-repo change plus a breaking change for every existing install — never a
-side effect of a copy edit.
+coordinated two-repo change that breaks existing installs. It must not happen as a side
+effect of a copy edit.
 
 Naming rule the check encodes: the product is **Retail Reason**, and Walmart is named only
-to describe who the service is for ("for Walmart suppliers") — never as part of the
-product's own name, in a heading, or in a manifest display field.
+to describe who the service is for ("for Walmart suppliers"). Walmart must not be part of the
+product's own name in a heading or manifest display field.
 
 ## Endpoint
 
@@ -178,9 +195,8 @@ The endpoint has its own host, separate from the account/billing API. Access sti
 an eligible account with active access and a user-bound key for Claude Code and Codex.
 Follow the current connection guide above for your client and account.
 
-To run against a local backend instead, set the plugin's **Server URL** config value to
-`http://localhost:8787/mcp` (Claude Code prompts for it at install; Codex reads it from
-`config-snippet.toml`). The access key is unchanged either way.
+Developers using a separate local backend can edit the URL in their local Claude Code or Codex
+MCP configuration to `http://localhost:8787/mcp`. Use credentials issued for that environment.
 
 ## License
 

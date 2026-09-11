@@ -5,13 +5,13 @@
     "email": "matt@retailreason.com"
   },
   "metadata": {
-    "description": "Retail Reason \u2014 a connected expert service for Walmart suppliers, Sam's Club suppliers, and Marketplace sellers: 1P suppliers, 3P Marketplace sellers, and the advisors who serve them. This marketplace installs the thin client plugin; expertise is delivered by the hosted Retail Reason service (user-bound access key required)."
+    "description": "Retail Reason provides connected expertise for Walmart suppliers, Sam's Club suppliers, Marketplace sellers, and their advisors. This marketplace installs the client plugin for Claude Code and Cowork. An eligible Retail Reason account with active access is required."
   },
   "plugins": [
     {
       "name": "retail-reason",
       "source": "./plugins/retail-reason",
-      "description": "Retail Reason client for Walmart suppliers, Sam's Club suppliers, and Marketplace sellers: expert answers on 1P supplier operations (onboarding, compliance, chargebacks, deductions, merchandising), Walmart supplier-facing data and analytics (Scintilla), Marketplace 3P selling, and the Supplier One portal \u2014 plus a pitfall check for any Walmart deliverable, a glossary lookup, and a fiscal-calendar converter. Requires a user-bound Retail Reason access key.",
+      "description": "Retail Reason helps Walmart suppliers, Sam's Club suppliers, Marketplace sellers, and their advisors answer operating questions and review draft plans. Covers supplier operations, Scintilla reporting, Marketplace selling, and Supplier One, with glossary and fiscal-calendar tools. Claude Code uses a personal access key; Cowork uses Retail Reason account sign-in. Active account access is required.",
       "homepage": "https://retailreason.com/docs/connect/",
       "repository": "https://github.com/RetailReason/retail-reason-plugins",
       "license": "MIT"
